@@ -29,21 +29,18 @@ router.post("/celebrities/new", (req, res, next) => {
 
 router.post("/celebrities/:id/delete", (req, res, next) => {
   console.log("We are in celebrities page");
-  Celebrity.findByIdAndRemove(req.params.id)
-  .then(() => {
+  Celebrity.findByIdAndRemove(req.params.id).then(() => {
     res.redirect("/celebrities/");
   });
 });
 
 router.get("/celebrities/:id", (req, res, next) => {
   console.log("We are in celebrities page");
-  Celebrity.findById(req.params.id)
-    .then((celebs) => {
-      console.log(celebs);
-    })
-    .then(() => {
-      res.render("celebrities/show", { celebrity: celebs });
-    });
+  Celebrity.findById(req.params.id).then((celebs) => {
+    console.log(celebs);
+
+    res.render("celebrities/show", { celebrity: celebs });
+  });
 });
 
 module.exports = router;
